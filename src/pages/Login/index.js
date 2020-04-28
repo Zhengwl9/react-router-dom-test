@@ -1,15 +1,33 @@
-import React, {Component} from 'react';
-import { createBrowserHistory } from 'history';
-import {Link} from "react-router-dom";
-
-const history = createBrowserHistory();
-function LoginPage() {
+import React from 'react'
+import { Form, Input, Button } from 'antd'
+import {observer} from 'mobx-react'
+import loginLogic from '../../mobx/login'
+function LoginPage(props) {
+    const {handleLogin,isLogin,loading} =loginLogic;
     return (
-        <div>
-            <p>You must log in to view the page at</p>
-            <Link to="/">登录</Link>
-        </div>
+        <Form
+            name="basic"
+            onFinish={(values)=>{handleLogin(values,props)}}
+        >
+            <Form.Item
+                label="Username"
+                name="username"
+                rules={[{ required: true, message: 'Please input your username!' }]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item label="Password"
+                       name="password"
+                       rules={[{ required: true, message: 'Please input your password!' }]}
+            >
+                <Input.Password />
+            </Form.Item>
+            <Form.Item>
+                <Button type="primary" htmlType="submit" loading={loading}>Submit{isLogin}</Button>
+            </Form.Item>
+        </Form>
     );
 }
 
-export default LoginPage;
+export default observer(LoginPage);

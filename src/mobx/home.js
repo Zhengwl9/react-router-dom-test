@@ -16,7 +16,8 @@ class Home{
     }
     @action.bound
     handleDelete=function (i) {
-        this.lists.splice(i,1)
+        this.lists.splice(i,1);
+        console.log(this.lists);
     }
 }
 

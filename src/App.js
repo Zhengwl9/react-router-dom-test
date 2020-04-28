@@ -1,39 +1,40 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route, Link, useParams, useRouteMatch} from "react-router-dom";
-import LoginPage from "./pages/Login";
 import Routers from './pages/router'
-export default function Nesting() {
+import {Layout, Menu,Button } from 'antd'
+import './app.css'
+import leftMenu from "./common/leftMenu";
+import {observer} from 'mobx-react'
+import MenuTree from './components/MenuTree'
+import loginLogic from './mobx/login';
+const { Header, Content, Footer, Sider } = Layout;
+
+function App(props) {
+    const {userInfo,handleLogOut} =loginLogic;
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/login">
-                    <LoginPage />
-                </Route>
-                <Route path="/">
-                    <App/>
-                </Route>
-            </Switch>
-        </Router>
+        <Layout style={{ minHeight: '100vh' }}>
+            <Sider>
+                <div className="logo" />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                    {leftMenu.map(item=>MenuTree(item))}
+                </Menu>
+            </Sider>
+            <Layout className="site-layout">
+                <Header className="site-layout-background" style={{ padding: 0,textAlign:'right' }} >
+                    欢迎您：{userInfo.username}
+                    &emsp;
+                    <Button onClick={()=>{handleLogOut(props)}}>登出</Button>
+                </Header>
+                <Content style={{ margin: '16px' }}>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                        <Routers/>
+                    </div>
+                </Content>
+                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            </Layout>
+        </Layout>
     );
 }
 
-function App() {
-    let { path, url } = useRouteMatch();
-    return (
-        <div  style={{display:'flex'}}>
-            <div style={{padding: "10px", width: "30%", background: "#f0f0f0"}}>
-                <ul style={{ listStyleType: "none", padding: 0 }}>
-                    <li><Link to={`${url}`}>Home</Link></li>
-                    <li><Link to="/test">Test</Link></li>
-                </ul>
-            </div>
-            <div style={{ flex: 1, padding: "10px" }}>
-                <Routers/>
-            </div>
-        </div>
-
-
-    );
-}
+export default observer(App);
 
 

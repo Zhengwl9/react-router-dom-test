@@ -1,0 +1,42 @@
+const leftMenu=[
+    {
+        title:'home',
+        key:'home',
+        children:[
+            {
+                title:'subHome1',
+                key:'subHome1',
+                path:'/',
+            },
+            {
+                title:'subHome2',
+                key:'subHome2',
+                path:'/test2',
+            },
+        ],
+    },
+    {
+        title:'test',
+        key:'test',
+        path:'/test',
+        children:[
+            {
+                title:'subTest1',
+                key:'subTest1',
+                path:'/test',
+            },
+            {
+                title:'subTest2',
+                key:'subTest2',
+                path:'/test2',
+            },
+        ],
+    },
+    {
+        title:'about',
+        key:'about',
+        path:'/about',
+    }
+]
+
+export default leftMenu;

@@ -1,47 +1,25 @@
-import React, { Component } from 'react'
-import {Switch,Route,useRouteMatch} from 'react-router-dom'
-import Home from './home/index'
+import React  from 'react'
+import {Switch,Route} from 'react-router-dom'
+import loadable from "@loadable/component";
 import NotFound from "./notFound";
-import LoginPage from "./Login";
+import PrivateRouter from "./PrivateRouter";
+
+const Home = loadable(() => import("./home"),<Loading/>);
+const About = loadable(() => import("./About"),<Loading/>);
 
  function Router() {
-    let { path, url } = useRouteMatch();
-    let a=3;
     return (
         <Switch>
-            {a>0?<Route exact path={path} component={Home}/>:null}
-            {a>0?<Route exact path="/test" component={Test}/>:null}
-            {a>0?<Route exact path="/test1" component={Test1}/>:null}
-            {a>0?null:<Route exact path="/test2" component={Test2}/>}
-            <Route component={NotFound}/>
+            <PrivateRouter exact path="/" component={Home}/>
+            <PrivateRouter exact path="/about" component={About}/>
+            <Route path='*' component={NotFound}/>
         </Switch>
     )
 }
 
 
-class Test extends Component {
-    render() {
-        return (
-            <div>Test</div>
-        );
-    }
-}
-
-class Test1 extends Component {
-    render() {
-        return (
-            <div>Test</div>
-        );
-    }
-}
-
-
-class Test2 extends Component {
-    render() {
-        return (
-            <div>Test</div>
-        );
-    }
+function Loading() {
+    return (<div>loading...</div>)
 }
 
 export default  React.memo(Router)
