@@ -3,14 +3,14 @@ import Routers from './pages/router'
 import {Layout, Menu,Button } from 'antd'
 import './app.css'
 import leftMenu from "./common/leftMenu";
-import {observer} from 'mobx-react'
+import {useObserver} from 'mobx-react'
 import MenuTree from './components/MenuTree'
 import loginLogic from './mobx/login';
 const { Header, Content, Footer, Sider } = Layout;
 
 function App(props) {
     const {userInfo,handleLogOut} =loginLogic;
-    return (
+    return useObserver(() => (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider>
                 <div className="logo" />
@@ -32,9 +32,9 @@ function App(props) {
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
             </Layout>
         </Layout>
-    );
+    ))
 }
 
-export default observer(App);
+export default App
 
 

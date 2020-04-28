@@ -22,4 +22,4 @@ function Loading() {
     return (<div>loading...</div>)
 }
 
-export default  React.memo(Router)
+export default Router

@@ -4,7 +4,6 @@ import loginLogic from '../mobx/login';
 import {observer} from 'mobx-react'
 function PrivateRouter(props) {
     const {isLogin} = loginLogic;
-    console.log(isLogin);
     const { component: Component, ...rest } = props
     return (
         <Route
