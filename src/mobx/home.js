@@ -1,23 +1,32 @@
-import {observable,action} from 'mobx'
+import {observable, action} from 'mobx'
+import {getList} from '../services/home'
 
-class Home{
+class Home {
     @observable
-    lists=["apple"];
+    lists = ["apple"];
     @observable
-    name='';
+    name = '';
     @action.bound
-    addItem=function () {
+    getList = () => {
+        getList().then((res) => {
+            if(res.code===200){
+                this.lists = res.data;
+            }
+        })
+    }
+    @action.bound
+    addItem = () => {
         this.lists.push(this.name);
-        this.name='';
+        this.name = '';
     }
     @action.bound
-    handleChangeName=function (e) {
-        this.name=e.target.value;
+    handleChangeName = (e) => {
+        this.name = e.target.value;
     }
     @action.bound
-    handleDelete=function (i) {
-        this.lists.splice(i,1);
-        console.log(this.lists);
+    handleDelete = (i) => {
+        this.lists = this.lists.filter((item, k) => k !== i)
+        // this.lists.splice(i, 1);
     }
 }
 

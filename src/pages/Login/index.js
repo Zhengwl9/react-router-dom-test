@@ -4,10 +4,16 @@ import {observer} from 'mobx-react'
 import loginLogic from '../../mobx/login'
 function LoginPage(props) {
     const {handleLogin,isLogin,loading} =loginLogic;
+    let login=(values)=>{
+        let result=handleLogin(values)
+        result.then(()=>{
+            props.history.push('/')
+        })
+    }
     return (
         <Form
             name="basic"
-            onFinish={(values)=>{handleLogin(values,props)}}
+            onFinish={(values)=>{login(values)}}
         >
             <Form.Item
                 label="Username"

@@ -4,6 +4,8 @@
  */
 import { extend } from 'umi-request';
 import { message } from 'antd';
+import prefix from "../common/prefix";
+import loginLogic from '../mobx/login'
 const codeMessage = {
     200: '服务器成功返回请求的数据。',
     201: '新建或修改数据成功。',
@@ -29,18 +31,9 @@ const errorHandler = error => {
     const { response } = error;
     if (response && response.status) {
         const errorText = codeMessage[response.status] || response.statusText;
-        const { status, url } = response;
         message.error(errorText);
-        console.log({
-            message: `请求错误 ${status}: ${url}`,
-            description: errorText,
-        })
     } else if (!response) {
         message.error('您的网络发生异常，无法连接服务器');
-        console.log({
-            description: '您的网络发生异常，无法连接服务器',
-            message: '网络异常',
-        })
     }
     return response;
 };
@@ -50,7 +43,34 @@ const errorHandler = error => {
 
 const request = extend({
     errorHandler,
+    prefix: prefix.api,
     // 默认错误处理
-    credentials: 'include', // 默认请求是否带上cookie
+    // credentials: 'include', // 默认请求是否带上cookie
 });
-export default request;
+
+
+request.interceptors.response.use(async (response) => {
+    if(response.status===401){
+        loginLogic.handleLogOut();
+    }
+    const data = await response.clone().json();
+    if(data.code !== 200){
+        message.info(data.mes)
+    }
+    return response;
+})
+
+
+async function get(url,params) {
+    return await request.get(url,{
+        params,
+    })
+}
+async function post(url,data) {
+    return await request.post(url,{
+        data,
+    })
+}
+
+
+export {get,post};

@@ -7,6 +7,9 @@ import Items from './Items'
 import {Button} from 'antd'
 @observer
 class Index extends Component {
+    componentDidMount() {
+        homeLogic.getList();
+    }
     render() {
         const {handleDelete,lists,addItem,name,handleChangeName} = homeLogic;
         return (

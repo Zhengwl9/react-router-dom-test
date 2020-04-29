@@ -4,6 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Nesting from "./Nesting";
 import {BrowserRouter} from "react-router-dom";
+import 'mobx-react-lite/batchingForReactDom'
 ReactDOM.render(
     <BrowserRouter>
         <Nesting/>

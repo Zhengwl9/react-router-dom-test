@@ -1,4 +1,5 @@
 import {observable, action, runInAction} from 'mobx';
+import {login} from '../services/login'
 let userInfo = sessionStorage.getItem('userInfo');
 userInfo = userInfo ? JSON.parse(userInfo) : '';
 class Login{
@@ -9,24 +10,27 @@ class Login{
     @observable
     userInfo=userInfo || {};
     @action.bound
-    handleLogin(values,props){
+    handleLogin(values){
         this.loading=true;
-        setTimeout(()=>{
-            runInAction(()=>{
-                this.isLogin=true;
-                this.userInfo={username:values.username,auth:['home','test']};
-                this.loading=false;
-                sessionStorage.setItem('userInfo',JSON.stringify(this.userInfo));
-                props.history.push('/')
-            })
-        },1000)
+        const data={username:values.username,auth: [ '01', '0101' ,'0102','03']}
+        let result=login(data);
+        result.then((res)=>{
+            if(res.code===200){
+                runInAction(()=>{
+                    this.isLogin=true;
+                    this.userInfo={username:values.username,auth:['home','test']};
+                    this.loading=false;
+                    sessionStorage.setItem('userInfo',JSON.stringify(this.userInfo));
+                })
+            }
+        })
+        return result;
     }
     @action.bound
-    handleLogOut(props){
+    handleLogOut(){
         this.isLogin=false;
         this.userInfo={}
         sessionStorage.removeItem('userInfo');
-        props.history.push('/login')
     }
 }
 export default new Login();
