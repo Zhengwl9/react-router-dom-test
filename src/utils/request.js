@@ -33,9 +33,10 @@ const errorHandler = error => {
         const errorText = codeMessage[response.status] || response.statusText;
         message.error(errorText);
     } else if (!response) {
-        message.error('您的网络发生异常，无法连接服务器');
+        message.error('无法连接服务器，请检查网络或服务器！');
     }
-    return response;
+    // console.log(response);
+    return response || {};
 };
 /**
  * 配置request请求时的默认参数
@@ -57,7 +58,7 @@ request.interceptors.response.use(async (response) => {
     if(data.code !== 200){
         message.info(data.mes)
     }
-    return response;
+    return response || {};
 })
 
 

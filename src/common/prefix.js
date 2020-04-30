@@ -1,5 +1,4 @@
-console.log(process.env.NODE_ENV);
 let prefix={
-    api:'http://localhost:4000/api/'
+    api:'http://localhost:4004/api/'
 }
 export default prefix;
