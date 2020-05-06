@@ -2,10 +2,10 @@ import React from "react";
 import Routers from './pages/router'
 import {Layout, Menu,Button } from 'antd'
 import './app.scss'
-import leftMenu from "./common/leftMenu";
 import {useObserver} from 'mobx-react'
 import MenuTree from './components/MenuTree'
 import loginLogic from './mobx/login';
+import {getFilterAuth} from './common/funcs'
 const { Header, Content, Footer, Sider } = Layout;
 
 function App(props) {
@@ -15,7 +15,7 @@ function App(props) {
             <Sider>
                 <div className="logo" />
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    {leftMenu.map(item=>MenuTree(item))}
+                    {getFilterAuth().map(item=>MenuTree(item))}
                 </Menu>
             </Sider>
             <Layout className="site-layout">

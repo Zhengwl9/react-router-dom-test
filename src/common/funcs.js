@@ -18,8 +18,9 @@ function getFilterAuth(currentAuth) {
             })
         }
     }
-    console.log(recursion(leftMenu));
+    let result=recursion(leftMenu);
+    console.log(result);
+    return result;
 }
-
 
 export {getFilterAuth}
