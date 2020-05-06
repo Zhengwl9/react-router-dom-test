@@ -6,3 +6,12 @@
 .site-layout .site-layout-background {
     background: #fff;
 }
+:global{
+    .flex{
+        display: flex;
+    }
+    .allFlex{
+        @extend .flex;
+        width:300px;
+    }
+}

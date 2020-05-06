@@ -26,7 +26,26 @@ function User() {
             </div>
 
             <p className={style.myText}>这是我的文字</p>
-
+            <div className={style.test}>
+                dgkagjk
+            </div>
+            <div id={style.context}>
+                <span className={style.notice}>
+                    这是class
+                </span>
+                <br/>
+                <span id={style.notice}>
+                    这是id
+                </span>
+            </div>
+            <div className={style.child}>
+                child
+            </div>
+            <div className="allFlex">
+                <div>dfjkd</div>
+                <div>gjakdg</div>
+            </div>
+            <div className={style.myTestRem}>fdjgjjg</div>
         </div>
     )
 }

@@ -1,0 +1,31 @@
+@function getWidth($width){
+  @return $width * 100vw /750
+}
+.commonFlex{
+  display: flex;
+  justify-content: space-between;
+}
+.box{
+  width: getWidth(375);
+  @extend .commonFlex;
+}
+
+@mixin myMixin($color:#ddd,$width:100px){
+  background:$color ;
+  width: $width;
+}
+
+
+@mixin basicFlex($justify:flex-start,$alignItems:flex-start,$warp:no-warp){
+  display: flex;
+  justify-content: $justify;
+  align-items: $alignItems;
+  flex-wrap:$warp;
+}
+
+.testDiv{
+  @include myMixin(green,200px);
+  @include basicFlex(space-between,center,warp);
+  //@include basicFlex('',center,warp);
+  height: 50px;
+}

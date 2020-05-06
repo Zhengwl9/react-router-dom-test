@@ -18,6 +18,15 @@ const leftMenu=[
                 key:'user',
                 path:'/user',
             },
+            {
+                title:'lessTest',
+                key:'lessTest',
+                path:'/lessTest',
+            }, {
+                title:'sassTest',
+                key:'sassTest',
+                path:'/sassTest',
+            },
         ],
     },
 

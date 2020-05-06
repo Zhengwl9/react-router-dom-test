@@ -1,10 +1,12 @@
 import React from "react";
 import {Route,Redirect} from 'react-router-dom';
 import loginLogic from '../mobx/login';
-import {observer} from 'mobx-react'
+import {observer} from 'mobx-react';
+import {getFilterAuth} from '../common/funcs'
 function PrivateRouter(props) {
     const {isLogin} = loginLogic;
-    const { component: Component, ...rest } = props
+    const { component: Component, ...rest } = props;
+    getFilterAuth();
     return (
         <Route
             {...rest}

@@ -1,0 +1,138 @@
+@my-width:100px;
+@nice-blue: #5B83AD;
+.bg{
+  background: #ddd;
+}
+.myDiv{
+  width: @my-width;
+  color: @nice-blue;
+  .bg;
+}
+
+
+
+
+#bundle {
+  .button {
+    display: block;
+    border: 1px solid black;
+    background-color: grey;
+    &:hover {
+      background-color: white
+    }
+  }
+  .tab {
+    background: red;
+  }
+  .citation {
+    background: #5B83AD;
+  }
+}
+#header a {
+  color: orange;
+  #bundle > .button;
+}
+@mySelector:banner;
+.@{mySelector}{
+  font-weight: bold;
+  line-height: 40px;
+  margin: 0 auto;
+}
+@fnord:  "I am fnord.";
+@v:    "fnord";
+
+.test{
+  &:after{
+    content: @@v;
+  }
+}
+
+nav ul {
+  //&:extend(.inline);
+  .inline;
+  .test1;
+  background: #ddd;
+}
+.inline {
+  color: red;
+}
+.test1{
+  font-size:30px;
+}
+
+.bucket {
+  tr & {
+    color: blue;
+  }
+}
+.someClass:extend(tr .bucket) {
+
+}
+
+
+.a.b.test,
+.test.c {
+  color: orange;
+}
+.test {
+  &:hover {
+    color: green;
+  }
+}
+
+.replacement:extend(.test all) {
+
+}
+
+
+.a(@bg: #5B83AD;@color: #900){
+  background: @bg;
+  color: @color;
+}
+.mixin-class {
+  color: red;
+}
+.mixin-id {
+  color: red;
+}
+#b{
+  .a();
+}
+
+
+.mixin(@color) {
+  color: @color;
+}
+.mixin(@color; @padding: 2px) {
+  color: @color;
+  padding: @padding;
+}
+.mixin(@color; @padding; @margin: 2px) {
+  color: @color;
+  padding: @padding;
+  margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+  .mixin(#008000);
+}
+.mixin1(@a; @rest...) {
+  color:@a;
+  background: @rest;
+}
+.myTest1{
+  .mixin1(red;#ddd)
+}
+
+
+.average(@width) {
+  @myTestWidth1: (@width * 2);
+}
+
+.myTest2 {
+  .average(16px);
+  padding: @myTestWidth1;
+  .average(8px);
+  margin:@myTestWidth1
+}
+
+

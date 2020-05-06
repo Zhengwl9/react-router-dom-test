@@ -1,7 +1,7 @@
 import React from "react";
 import Routers from './pages/router'
 import {Layout, Menu,Button } from 'antd'
-import './app.css'
+import './app.scss'
 import leftMenu from "./common/leftMenu";
 import {useObserver} from 'mobx-react'
 import MenuTree from './components/MenuTree'
