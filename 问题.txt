@@ -1,0 +1,36 @@
+1.mobx中的autorun的返回值auto在哪里定义的？：不用定义，就是固定的写法
+2.注意: 永远在 getter 之后 定义 setter，一些 TypeScript 版本会知道声明了两个具有相同名称的属性。
+3.而 autorun 中的值必须要手动清理才行,在什么时候手动清除？：是的，在componentWillUnmount李米娜调用返回值
+4.React.render(<Timer timerData={timerData.secondsPassed} />, document.body)没有反应？是直接传timerData吗 未解决
+5.@observable到底做了什么，babel转换没有看懂。
+6.修改的地方需要用常量来声明吗？???
+7.4000-4001的跨域是怎么做的？
+8.modal组件
+9.webpack中的output没有看懂
+10.webpack的mode直接设置成development，那production怎么办
+11.use:'babel-loader' 和 require.resolve('babel-loader')有什么区别
+12.link-icon的小图标在哪里换的
+13.为什么cra的js文件不适用babel-loader
+
+
+1.路由配置，打开为什么报错
+
+
+
+04/29
+//1.401的status的配置
+2.modules的配置
+3使用的handlebars的模板引擎，然后加入favicon.ico
+5.process.env.全局参数怎么设置
+6.后台是那边设置的cookie吗
+7.setting中的环境变量为什么拿不到，为什么要用ajax获取
+
+
+2020/05/06
+1.webpack设置proxy
+2.loadable的实现
+3.less的Escaping
+4.开课吧公众号，vw的兼容性问题
+5.less的函数
+6.vw的兼容性怎么看https://caniuse.com/?utm_source=caibaojian.com#search=vw
+7.leftMenu的过滤
