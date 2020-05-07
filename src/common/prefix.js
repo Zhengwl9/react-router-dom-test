@@ -1,4 +1,4 @@
 let prefix={
-    api:'http://localhost:4004/api/'
+    api:'/api/'
 }
 export default prefix;

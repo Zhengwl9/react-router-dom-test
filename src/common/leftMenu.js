@@ -29,6 +29,11 @@ const leftMenu=[
             },
         ],
     },
+    {
+        title:'test1',
+        key:'test1',
+        path:'/test1',
+    },
 
 ]
 

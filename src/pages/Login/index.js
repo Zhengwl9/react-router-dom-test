@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Input, Button } from 'antd'
 import {observer} from 'mobx-react'
 import loginLogic from '../../mobx/login'
+import {Redirect} from 'react-router-dom'
 function LoginPage(props) {
     const {handleLogin,isLogin,loading} =loginLogic;
     let login=(values)=>{
@@ -9,6 +10,10 @@ function LoginPage(props) {
         result.then(()=>{
             props.history.push('/')
         })
+    }
+
+    if (isLogin) {
+        return <Redirect to="/" />
     }
     return (
         <Form

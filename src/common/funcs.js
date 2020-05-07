@@ -7,7 +7,7 @@ function getFilterAuth(currentAuth) {
     },{});
     function recursion(arr) {
         if(arr.length){
-           return arr.map(item => {
+            return arr.map(item => {
                 if(hash[item.key]){
                     if(item.children && item.children.length){
                         return {...item,children:recursion(item.children)}

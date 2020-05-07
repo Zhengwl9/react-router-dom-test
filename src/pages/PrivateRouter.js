@@ -13,3 +13,6 @@ function PrivateRouter(props) {
     );
 }
 export default observer(PrivateRouter)
+
+
+

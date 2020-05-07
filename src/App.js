@@ -1,7 +1,7 @@
 import React from "react";
 import Routers from './pages/router'
 import {Layout, Menu,Button } from 'antd'
-import './app.scss'
+import style from './app.scss'
 import {useObserver} from 'mobx-react'
 import MenuTree from './components/MenuTree'
 import loginLogic from './mobx/login';
@@ -13,19 +13,19 @@ function App(props) {
     return useObserver(() => (
         <Layout style={{ minHeight: '100vh' }}>
             <Sider>
-                <div className="logo" />
+                <div className={style.logo} />
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    {getFilterAuth().map(item=>MenuTree(item))}
+                    {getFilterAuth().map(item=> item &&  MenuTree(item))}
                 </Menu>
             </Sider>
-            <Layout className="site-layout">
-                <Header className="site-layout-background" style={{ padding: 0,textAlign:'right' }} >
+            <Layout className={style.siteLayout}>
+                <Header className={style.siteLayoutBackground} style={{ padding: 0,textAlign:'right' }} >
                     欢迎您：{userInfo.username}
                     &emsp;
-                    <Button onClick={()=>{handleLogOut(props)}}>登出</Button>
+                    <Button type="primary" onClick={()=>{handleLogOut(props)}}>登出</Button>
                 </Header>
                 <Content style={{ margin: '16px' }}>
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                    <div style={{ padding: 24, minHeight: 360 }}>
                         <Routers/>
                     </div>
                 </Content>
